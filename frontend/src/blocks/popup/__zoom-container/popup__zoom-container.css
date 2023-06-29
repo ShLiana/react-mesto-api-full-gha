@@ -1,0 +1,7 @@
+.popup__zoom-container {
+  background: none;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: relative;
+  margin: 0 auto;
+}

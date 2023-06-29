@@ -1,0 +1,8 @@
+.popup__registration-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  width: 430px;
+  height: 330px;
+}

@@ -1,0 +1,18 @@
+.header__link-btn {
+  font-size: 18px;
+  line-height: 22px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  background-color:  #000000;
+}
+
+.header__link-btn:hover {
+  opacity: 0.8;
+}
