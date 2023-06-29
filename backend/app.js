@@ -8,11 +8,9 @@ const auth = require('./middlewares/auth');
 const { createUser, login } = require('./controllers/users');
 const { signinDataValidation, signupDataValidation } = require('./middlewares/dataValidation');
 const NotFound = require('./utils/errors/NotFound');
-const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-app.use(cors());
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
 app.use(express.json());
