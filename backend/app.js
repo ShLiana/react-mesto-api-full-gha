@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { errors } = require('celebrate');
@@ -11,6 +12,7 @@ const NotFound = require('./utils/errors/NotFound');
 
 const { PORT = 3000 } = process.env;
 const app = express();
+app.use(cors());
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
