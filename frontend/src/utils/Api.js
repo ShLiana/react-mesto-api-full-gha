@@ -44,24 +44,26 @@ class Api {
   }
 
   //обновить аватар пользователя
-  updateUserAvatar(data) {
+  updateUserAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.userAvatar,
+        //avatar: data.userAvatar,
+        avatar
       }),
     }).then((res) => this._getJson(res));
   }
 
   //добавить новые карточки
-  addNewCard(data) {
+  addNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        link: data.link,
+        //name: data.name,
+        //link: data.link,
+        name, link
       }),
     }).then((res) => this._getJson(res));
   }
