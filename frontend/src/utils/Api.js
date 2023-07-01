@@ -12,22 +12,30 @@ class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  // Установить токен
-  setToken(token) {
-    this._headers.Authorization = `Bearer ${token}`;
+  _getHeaders() {
+    const jwt = localStorage.getItem('jwt');
+    return {
+      'Authorization': `Bearer ${jwt}`,
+      ...this._headers,
+    };
   }
+
+  // Установить токен
+  //setToken(token) {
+    //this._headers.Authorization = `Bearer ${token}`;
+  //}
 
   //получить карточки
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: this._headers,
+      headers: this._getHeaders,
     }).then((res) => this._getJson(res));
   }
 
   //получить информацию о пользователе
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
-      headers: this._headers,
+      headers: this._getHeaders,
     }).then((res) => this._getJson(res));
   }
 
@@ -35,7 +43,7 @@ class Api {
   updateUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders,
       body: JSON.stringify({
         name: data.userName,
         about: data.userJob,
@@ -47,7 +55,7 @@ class Api {
   updateUserAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders,
       body: JSON.stringify({
         avatar: data.userAvatar,
       }),
@@ -58,7 +66,7 @@ class Api {
   addNewCard(data) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this._getHeaders,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -70,7 +78,7 @@ class Api {
   deleteCard(_id) {
     return fetch(`${this._url}/cards/${_id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders,
     }).then((res) => this._getJson(res));
   }
 
@@ -88,12 +96,12 @@ class Api {
     if (isLiked) {
       return fetch(`${this._url}/cards/${_id}/likes`, {
         method: "PUT",
-        headers: this._headers,
+        headers: this._getHeaders,
       }).then((res) => this._getJson(res));
     } else {
       return fetch(`${this._url}/cards/${_id}/likes`, {
         method: "DELETE",
-        headers: this._headers,
+        headers: this._getHeaders,
       }).then((res) => this._getJson(res));
     }
   }
@@ -111,7 +119,6 @@ class Api {
 const api = new Api({
   url: "https://api.shmeleva.nomoreparties.sbs",
   headers: {
-    Authorization: "",
     "Content-Type": "application/json",
   },
 });
