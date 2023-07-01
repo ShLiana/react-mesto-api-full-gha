@@ -14,6 +14,11 @@ class Api {
     }
   }
 
+  // Установить токен
+  setToken(token) {
+    this._headers.Authorization = `Bearer ${token}`;
+  }
+
   //получить карточки
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
@@ -106,9 +111,9 @@ class Api {
 // }
 
 const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-61",
+  url: 'https://api.shmeleva.nomoreparties.sbs',
   headers: {
-    authorization: "44fbd263-dcc3-40dc-bdca-15d93dcff4a4",
+    authorization: "",
     "Content-Type": "application/json",
   },
 });

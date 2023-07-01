@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.shmeleva.nomoreparties.sbs';
+//export const BASE_URL = 'https://auth.nomoreparties.co';
 //export const BASE_URL = 'http://104.131.160.75:3000';
 
 //проверка ответа сервера

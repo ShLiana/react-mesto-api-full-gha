@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -9,26 +11,41 @@ const auth = require('./middlewares/auth');
 const { createUser, login } = require('./controllers/users');
 const { signinDataValidation, signupDataValidation } = require('./middlewares/dataValidation');
 const NotFound = require('./utils/errors/NotFound');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
 app.use(cors());
 
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
+mongoose.connect('mongodb://127.0.0.1/mestodb');
 
+// подключить парсеры
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// подключить логгер запросов
+app.use(requestLogger);
+
+// Краш-тест сервера
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', signinDataValidation, login);
 app.post('/signup', signupDataValidation, createUser);
 
-// подключаем роутинг
+// подключить роутинг
 app.use('/users', auth, userRouter);
 app.use('/cards', auth, cardRouter);
 
 app.all('*/', (req, res, next) => {
   next(new NotFound('Страница не существует'));
 });
+
+// подключить логгер ошибок
+app.use(errorLogger);
 
 // обработчик ошибок celebrate
 app.use(errors());

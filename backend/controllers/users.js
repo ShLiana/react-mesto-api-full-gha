@@ -6,6 +6,8 @@ const BadRequestError = require('../utils/errors/BadRequestError');
 const NotFound = require('../utils/errors/NotFound');
 const ConflictError = require('../utils/errors/ConflictError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 // Получить всех пользователей
 const getUsers = (req, res, next) => {
   User.find({})
