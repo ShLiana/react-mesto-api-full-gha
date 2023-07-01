@@ -111,7 +111,7 @@ class Api {
 // }
 
 const api = new Api({
-  url: 'https://api.shmeleva.nomoreparties.sbs',
+  url: 'https://themesto.students.nomoreparties.sbs',
   headers: {
     authorization: "",
     "Content-Type": "application/json",
