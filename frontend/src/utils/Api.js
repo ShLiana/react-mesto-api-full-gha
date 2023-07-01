@@ -16,7 +16,7 @@ class Api {
 
   // Установить токен
   setToken(token) {
-    this._headers.Authorization = `Bearer ${token}`;
+    this._headers.authorization = `Bearer ${token}`;
   }
 
   //получить карточки
@@ -111,7 +111,7 @@ class Api {
 // }
 
 const api = new Api({
-  url: 'https://api.shmeleva.nomoreparties.sbs',
+  url: "https://api.shmeleva.nomoreparties.sbs",
   headers: {
     authorization: "",
     "Content-Type": "application/json",
