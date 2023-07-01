@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.114.44
 
-Frontend https://...
+Frontend https://themesto.students.nomoreparties.sbs
 
-Backend https://...
+Backend https://api.shmeleva.nomoreparties.sbs
