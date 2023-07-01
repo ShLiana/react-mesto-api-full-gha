@@ -6,17 +6,15 @@ class Api {
 
   //проверить ответ сервера
   _getJson(res) {
-    {
-      if (res.ok) {
+    if (res.ok) {
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
-    }
   }
 
   // Установить токен
   setToken(token) {
-    this._headers.authorization = `Bearer ${token}`;
+    this._headers.Authorization = `Bearer ${token}`;
   }
 
   //получить карточки
@@ -113,7 +111,7 @@ class Api {
 const api = new Api({
   url: "https://api.shmeleva.nomoreparties.sbs",
   headers: {
-    authorization: "",
+    Authorization: "",
     "Content-Type": "application/json",
   },
 });
