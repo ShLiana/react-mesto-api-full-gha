@@ -236,7 +236,9 @@ function App() {
   // Проверка токена
   function CheckToken () {
     const token = localStorage.getItem("jwt");
-    if (token) {
+    if (!token) {
+     return;
+    }
       auth
       .checkToken(token)
       .then((data) => {
@@ -246,8 +248,8 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    }
   };
+  
 
   useEffect(() => {
     CheckToken();

@@ -12,24 +12,21 @@ class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
   }
 
+  setToken(token) {
+    this._headers.Authorization = `Bearer ${token}`;
+  }
+
   //получить карточки
   getInitialCards() {
-    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/cards`, {
-      method: "GET",
-      headers: {
-      authorization: `Bearer ${token}`
-      }
+      headers: this._headers,
     }).then((res) => this._getJson(res));
   }
 
   //получить информацию о пользователе
   getUserInfo() {
-    const token = localStorage.getItem('jwt');
     return fetch(`${this._url}/users/me`, {
-      headers: {
-        authorization: `Bearer ${token}`
-      }
+      headers: this._headers,
     }).then((res) => this._getJson(res));
   }
 

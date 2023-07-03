@@ -35,8 +35,7 @@ export const loginUser = ({ email, password }) => {
 };
 
 //делаем запрос токена
-export const checkToken = () => {
-  const token = localStorage.getItem('jwt');
+export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
       headers: {
