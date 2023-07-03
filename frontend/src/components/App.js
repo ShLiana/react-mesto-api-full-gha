@@ -233,8 +233,7 @@ function App() {
       });
   }
 
-  // Проверка токена
-  const CheckToken = () => {
+  useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (!token) {
       return;
@@ -248,11 +247,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  useEffect(() => {
-    CheckToken();
-  }, []);
+   }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
