@@ -35,12 +35,13 @@ export const loginUser = ({ email, password }) => {
 };
 
 //делаем запрос токена
-export const checkToken = (jwt) => {
+export const checkToken = () => {
+  const token = localStorage.getItem('jwt');
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-         Authorization: `Bearer ${jwt}`,
+         Authorization: `Bearer ${token}`,
        },
     })
     .then((res) => checkResponse(res));

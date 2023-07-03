@@ -233,12 +233,11 @@ function App() {
       });
   }
 
-  useEffect(() => {
+  // Проверка токена
+  function CheckToken () {
     const token = localStorage.getItem("jwt");
-    if (!token) {
-      return;
-    }
-    auth
+    if (token) {
+      auth
       .checkToken(token)
       .then((data) => {
         setHeaderUserEmail(data.data.email);
@@ -247,7 +246,12 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-   }, []);
+    }
+  };
+
+  useEffect(() => {
+    CheckToken();
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
