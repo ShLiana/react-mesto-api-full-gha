@@ -239,9 +239,10 @@ function App() {
     if (!token) {
      return;
     }
+    api
+     .setToken()    
       auth
       .checkToken(token)
-      .tokenValid()
       .then((data) => {
         setHeaderUserEmail(data.data.email);
         setIsLoggedIn(true);
@@ -266,6 +267,7 @@ function App() {
     if (isLoggedIn) {
       // Promise.all([api.getInitialCards(), api.getUserInfo()]);
       api
+        .setToken()       
         .getUserInfo()
         .then((data) => {
           setCurrentUser(data);
