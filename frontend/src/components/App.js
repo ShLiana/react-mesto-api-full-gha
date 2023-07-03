@@ -241,6 +241,7 @@ function App() {
     }
       auth
       .checkToken(token)
+      .tokenValid()
       .then((data) => {
         setHeaderUserEmail(data.data.email);
         setIsLoggedIn(true);
