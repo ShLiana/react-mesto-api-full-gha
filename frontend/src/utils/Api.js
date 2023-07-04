@@ -12,6 +12,7 @@ class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
   }
 
+ //Установить токен
   setToken(token) {
     this._headers.Authorization = `Bearer ${token}`;
   }
@@ -110,8 +111,8 @@ class Api {
 const api = new Api({
   url: "https://api.shmeleva.nomoreparties.sbs",
   headers: {
-    Authorization: "",
     "Content-Type": "application/json",
+    Authorization: "",
   },
 });
 

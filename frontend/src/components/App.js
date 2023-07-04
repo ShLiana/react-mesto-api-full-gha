@@ -222,8 +222,9 @@ function App() {
       .loginUser(userData)
       .then((data) => {
         setIsLoggedIn(true);
-        setHeaderUserEmail(userData.email);
         localStorage.setItem("jwt", data.token);
+        setHeaderUserEmail(userData.email);
+        CheckToken();
         navigate("/");
       })
       .catch((err) => {
@@ -234,13 +235,13 @@ function App() {
   }
 
   // Проверка токена
-  function CheckToken () {
+  const CheckToken = () => {
     const token = localStorage.getItem("jwt");
     if (!token) {
      return;
     }
-    api
-     .setToken()    
+    //api
+     //.setToken()    
       auth
       .checkToken(token)
       .then((data) => {
@@ -265,9 +266,9 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // Promise.all([api.getInitialCards(), api.getUserInfo()]);
+      Promise.all([api.getInitialCards(), api.getUserInfo()]);
       api
-        .setToken()       
+       // .setToken()       
         .getUserInfo()
         .then((data) => {
           setCurrentUser(data);
