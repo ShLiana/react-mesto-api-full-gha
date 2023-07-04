@@ -19,6 +19,8 @@ function Main({
   const currentUser = React.useContext(CurrentUserContext);
   const { name, about, avatar } = currentUser;
 
+  console.log(cards);
+
   return (
     <main className="main">
       <section className="profile">
@@ -57,11 +59,11 @@ function Main({
           aria-label="Добавить фотографии"
           title="Добавить фотографии"
         ></button>
-      </section>
+      </section>      
 
       <section className="gallery">
         <ul className="gallery__list">
-          {cards.map((card) => (
+          {cards?.map((card) => (
             <Card
               key={card._id}
               card={card}

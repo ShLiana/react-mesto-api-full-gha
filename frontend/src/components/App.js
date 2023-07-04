@@ -110,9 +110,9 @@ function App() {
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
+      .then(({ data }) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? data : c))
         );
       })
       .catch((err) => {
@@ -160,8 +160,8 @@ function App() {
     setIsPageLoading(true);
     api
       .updateUserInfo(data)
-      .then((newData) => {
-        setCurrentUser(newData);
+      .then(({ user }) => {
+        setCurrentUser(user);
         closeAllPopups();
       })
       .catch((err) => {
@@ -175,8 +175,8 @@ function App() {
     setIsPageLoading(true);
     api
       .updateUserAvatar(data)
-      .then((newAvatar) => {
-        setCurrentUser(newAvatar);
+      .then(({ user }) => {
+        setCurrentUser(user);
         closeAllPopups();
       })
       .catch((err) => {
@@ -190,8 +190,8 @@ function App() {
     setIsPageLoading(true);
     api
       .addNewCard(data)
-      .then((newCard) => {
-        setCards([newCard, ...cards]);
+      .then(({ data }) => {
+        setCards([data, ...cards]);
         closeAllPopups(); //Закрытие модальных окон
       })
       .catch((err) => {
@@ -266,10 +266,10 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-     Promise.all([api.getInitialCards(), api.getUserInfo()]);
+      // Promise.all([api.getInitialCards(), api.getUserInfo()]);
       api 
         .getUserInfo()
-        .then((data) => {
+        .then(({ data }) => {
           setCurrentUser(data);
         })
         .catch((err) => {
@@ -277,8 +277,8 @@ function App() {
         });
       api
         .getInitialCards()
-        .then((cards) => {
-          setCards(cards);
+        .then(({ data }) => {
+          setCards(data);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
