@@ -1,6 +1,7 @@
 export const BASE_URL = 'https://api.shmeleva.nomoreparties.sbs';
 //export const BASE_URL = 'https://auth.nomoreparties.co';
 //export const BASE_URL = 'http://104.131.160.75:3000';
+//export const BASE_URL = 'http://localhost^3000';
 
 //проверка ответа сервера
 const checkResponse = (res) => {
@@ -10,11 +11,6 @@ const checkResponse = (res) => {
     // если ошибка, отклоняем промис
     return Promise.reject(`Ошибка код: ${res.status}`);
   }
-
-// const headers = {
-//   Acceert: 'application/json',
-//   'Content-Type': 'application/json'
-// }
 
 export const registerUser = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {

@@ -240,7 +240,7 @@ function App() {
     if (!token) {
      return;
     }
-    //api
+   // api
      //.setToken()    
       auth
       .checkToken(token)
@@ -266,9 +266,8 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      Promise.all([api.getInitialCards(), api.getUserInfo()]);
-      api
-       // .setToken()       
+     Promise.all([api.getInitialCards(), api.getUserInfo()]);
+      api 
         .getUserInfo()
         .then((data) => {
           setCurrentUser(data);
