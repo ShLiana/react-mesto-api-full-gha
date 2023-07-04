@@ -1,3 +1,5 @@
+import { BASE_URL } from "./auth";
+
 class Api {
   constructor(options) {
     this._url = options.url;
@@ -118,7 +120,9 @@ class Api {
 // }
 
 const api = new Api({
-  url: "https://api.shmeleva.nomoreparties.sbs",
+ // url: "https://mesto.nomoreparties.co/v1/cohort-61",
+  //url: "https://api.shmeleva.nomoreparties.sbs",
+  url: BASE_URL,
   headers: {
     "Content-Type": "application/json",
     Authorization: "",

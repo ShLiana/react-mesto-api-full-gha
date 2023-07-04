@@ -106,7 +106,7 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes?.some((i) => i === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .changeLikeCardStatus(card._id, !isLiked)
@@ -160,7 +160,7 @@ function App() {
     setIsPageLoading(true);
     api
       .updateUserInfo(data)
-      .then(({ user }) => {
+      .then(({ data: user }) => {
         setCurrentUser(user);
         closeAllPopups();
       })
@@ -175,7 +175,7 @@ function App() {
     setIsPageLoading(true);
     api
       .updateUserAvatar(data)
-      .then(({ user }) => {
+      .then(({ data: user }) => {
         setCurrentUser(user);
         closeAllPopups();
       })
@@ -253,7 +253,6 @@ function App() {
       });
   };
   
-
   useEffect(() => {
     CheckToken();
   }, []);
@@ -266,23 +265,14 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // Promise.all([api.getInitialCards(), api.getUserInfo()]);
-      api 
-        .getUserInfo()
-        .then(({ data }) => {
-          setCurrentUser(data);
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`);
-        });
-      api
-        .getInitialCards()
-        .then(({ data }) => {
-          setCards(data);
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`);
-        });
+      Promise.all([api.getInitialCards(), api.getUserInfo()])
+      .then(([{ data: cards }, { data: user }]) => {
+        setCurrentUser(user);
+        setCards(cards.reverse());
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
     }
   }, [isLoggedIn]);
 

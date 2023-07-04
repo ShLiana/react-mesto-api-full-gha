@@ -19,7 +19,7 @@ function Main({
   const currentUser = React.useContext(CurrentUserContext);
   const { name, about, avatar } = currentUser;
 
-  console.log(cards);
+  //console.log(cards);
 
   return (
     <main className="main">
@@ -63,7 +63,7 @@ function Main({
 
       <section className="gallery">
         <ul className="gallery__list">
-          {cards?.map((card) => (
+          {cards.map((card) => (
             <Card
               key={card._id}
               card={card}

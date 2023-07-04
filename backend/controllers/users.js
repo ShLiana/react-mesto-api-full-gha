@@ -6,7 +6,7 @@ const BadRequestError = require('../utils/errors/BadRequestError');
 const NotFound = require('../utils/errors/NotFound');
 const ConflictError = require('../utils/errors/ConflictError');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV, JWT_SECRET = 'JWT_SECRET' } = process.env;
 
 // Получить всех пользователей
 const getUsers = (req, res, next) => {
@@ -60,7 +60,7 @@ const login = (req, res, next) => {
         expiresIn: '7d',
       });
       // вернём токен
-      res.status.send({ token });
+      res.status(ERROR_STATUS.OK).send({ token });
     })
     .catch(next);
 };
