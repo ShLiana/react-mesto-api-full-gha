@@ -160,7 +160,7 @@ function App() {
     setIsPageLoading(true);
     api
       .updateUserInfo(data)
-      .then(({ data: user }) => {
+      .then(({ user }) => {
         setCurrentUser(user);
         closeAllPopups();
       })
@@ -175,7 +175,7 @@ function App() {
     setIsPageLoading(true);
     api
       .updateUserAvatar(data)
-      .then(({ data: user }) => {
+      .then(({ user }) => {
         setCurrentUser(user);
         closeAllPopups();
       })
